@@ -1,0 +1,26 @@
+<div class="wrapper fadeInDown bg-danger">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="assets/images/pokedex-icon.png" id="icon" alt="User Icon" />
+    </div>
+    <div class="fadeIn first">
+      <h1>Pokedex-Lite</h1>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)" >
+      <input type="text" id="login" class="fadeIn second" placeholder="Username" formControlName="usuario">
+      <input type="password" id="password" class="fadeIn third"  placeholder="Password" formControlName="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Username/Password incorrect -->
+    <div class="alert" *ngIf="error_status">
+      <p class="text-bg-danger fw-bold m-2 p-2">{{error_msg}}</p>
+    </div>
+
+  </div>
+</div>
