@@ -2,6 +2,8 @@ import { Component, Input} from '@angular/core';
 import { UsuariosService } from './../../services/usuarios/usuarios.service';
 import { checkToken } from 'src/app/models/token.functions';
 import { Router } from '@angular/router';
+import { Pokemon } from 'src/app/models/pokemon';
+import { Pokemons } from 'src/app/data/pokemons-data';
 
 @Component({
   selector: 'app-poke-list',
@@ -37,6 +39,11 @@ export class PokeListComponent {
    }
 
    getPokemon(pokemon: any){
+    for(let i=0;i<this.allPokemons.length;i++){
+      if(this.allPokemons[i].id==pokemon.id){
+        this.allPokemons[i]=pokemon;
+      }
+    }
     this.router.navigate([`pokemon/${pokemon.id}`])
   }
 }

@@ -3,7 +3,6 @@ import { PokeApiService } from './services/api-pokemons/poke-api.service';
 import { Pokemons } from './data/pokemons-data';
 import { EvolutionApiService } from './services/evolution-api/evolution-api.service';
 import { Evolutions } from './data/evolutions-data';
-import { Evolution } from './models/evolution';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +18,7 @@ export class AppComponent {
   ngOnInit(){
     this.saveEvolutions();
     this.savePokemons();
+    Pokemons.sort((x,y)=>x.id>y.id?1:-1);
   }
 
   savePokemons(){
@@ -50,6 +50,7 @@ export class AppComponent {
           pokemonEvolutions={
             id: i,
             pokemon: res.chain.species.name,
+            level: 0,
             evolutions: this.evolutions_names
           }
           Evolutions.push(pokemonEvolutions);
@@ -61,7 +62,10 @@ export class AppComponent {
 
   allEvolutions(evolve: any[]){
     if(evolve.length>0){
-      this.evolutions_names.push(evolve[0].species.name);
+      this.evolutions_names.push({
+        evo_name:evolve[0].species.name,
+        min_level: evolve[0].evolution_details[0].min_level
+      });
       this.allEvolutions(evolve[0].evolves_to);
     }
   }

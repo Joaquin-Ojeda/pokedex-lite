@@ -14,4 +14,6 @@ export class NewComponent {
   ngOnInit(){
     checkToken(this.router);
   }
+
+  
 }

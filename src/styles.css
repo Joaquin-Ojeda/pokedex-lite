@@ -2,6 +2,8 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 html{
     background-color: white;
+    height: 100%;
+    margin: 0;
 }
 body{
     height: 100%;

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Evolutions } from 'src/app/data/evolutions-data';
 import { Pokemons } from 'src/app/data/pokemons-data';
+import { Pokemon } from 'src/app/models/pokemon';
 import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
 
 @Component({
@@ -11,7 +11,6 @@ import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
 })
 export class DetailComponent {
   @Input() pokemon: any;
-  poke_name: string='';
   lvl: any;
   name: any;
   types: any;
@@ -27,17 +26,20 @@ export class DetailComponent {
 
   }
 
-  checkFound(){
+  checkLevel(){
+
     if(this.lvl<0 || this.lvl>100 || this.lvl==null){
-      window.alert("Please write a valid lvl for the pokemon")
+
     }
     else{
       this.usuariosService.setPokemonsVistos(localStorage.getItem('token'), {
         id: this.pokemon.id,
         lvl: this.lvl
       })
-      this.router.navigate(['dashboard']);
+      this.pokemon.found.foundBool=true;
+      this.pokemon.found.lvl=this.lvl;
     }
+    
   }
 
   changeEditMode(){
@@ -49,14 +51,18 @@ export class DetailComponent {
         this.pokemon.name = this.name;
       }
       if(this.types!=null && this.types!=''){
-        this.pokemon.types[0].type.name = this.types;
-      }
-      if(this.abilities!=null && this.abilities!=''){
-        this.pokemon.abilities[0].ability.name = this.abilities;
+        let type_aux;
+        type_aux={
+          name: this.types
+        }
+        this.pokemon.types.push({type: type_aux});
+        this.types='';
       }
       if(this.evolutions!=null && this.evolutions!=''){
         this.pokemon.evolutions[0] = this.evolutions;
       }
+      this.checkLevel();
+      this.loadPokemon(this.pokemon);
       this.changeEditMode();
   }
 
@@ -67,8 +73,27 @@ export class DetailComponent {
         id=poke.id;
       }
     };
-
     this.router.navigate([`pokemon/${id}`]);
+  }
+  
+  loadPokemon(pokemon: any){
+    for(let i=0; i<Pokemons.length; i++){
+      if( Pokemons[i].id == pokemon.id ){
+        Pokemons[i] = pokemon;
+      }
+    }
+  }
+
+  removeType(name: string){
+
+    for(let i=0;i<this.pokemon.types.length;i++){
+      if(this.pokemon.types[i].type.name==name){
+        this.pokemon.types.splice(i,1);
+      }
+    }
+  }
+  back(){
+    this.router.navigate(['dashboard']);
   }
   
 }

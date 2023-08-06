@@ -1,87 +1,102 @@
 <div
   *ngIf="pokemon"
-  class="card m-auto mt-3 border-3 border-dark mb-3 d-flex flex-column align-items-center w-75 fadeInDown"
+  class="card m-auto mt-3 mb-3 border-3 border-dark mb-3 d-flex flex-column align-items-center w-75 fadeInDown"
   style="max-width: 600px"
 >
-  <a href="dashboard" class="btn btn-success mt-2">Volver</a>
-  <img src="{{ pokemon.image }}" class="card-img-top w-50" alt="poke" />
+  <button class="btn btn-success mt-2" (click)="back()">Back</button>
+  <img src="{{ pokemon.image }}" class="card-img-top w-50" alt="poke"/>
   <div class="card-body d-flex flex-column justify-content-center w-100">
     <h5 class="card-title text-center fw-bold mayus">
       {{ pokemon.id }}
     </h5>
-    <h5 *ngIf="!isInEditMode" class="card-title text-center fw-bold mayus">
+    <h5 *ngIf="!isInEditMode" class="card-title text-center fw-bold mayus fs-1">
       {{ pokemon.name }}
     </h5>
 
+    <!-- EDIT MODE -->
     <div *ngIf="isInEditMode" class="d-flex flex-column justify-content-center">
       <h5 class="card-title text-center fw-bold mayus">Name</h5>
       <input type="text" class="text-center w-75 m-auto" [(ngModel)]="name" placeholder="Insert name"/>
     </div>
+    <!-- EDIT MODE END-->
 
     <div class="text-center">
       <h5 class="card-text fw-bold">Types</h5>
-      <div *ngIf="!isInEditMode">
-        <p class="mayus" *ngFor="let type_arr of pokemon.types">
+      <div *ngIf="!isInEditMode" class="d-flex flex-column justify-content-center">
+        <button class="mayus w-50 m-auto mb-3 btn btn-outline-success no_pointer" *ngFor="let type_arr of pokemon.types">
           {{ type_arr.type.name }}
-        </p>
+        </button>
       </div>
+
+      <!-- EDIT MODE -->
       <div
         *ngIf="isInEditMode"
         class="d-flex flex-column justify-content-center"
       >
-        <input type="text" class="text-center w-75 m-auto" [(ngModel)]="types" placeholder="Insert type"/>
+        <button class="mayus w-50 m-auto mb-3 btn btn-danger" *ngFor="let type_arr of pokemon.types" (click)="removeType(type_arr.type.name)">
+          {{ type_arr.type.name }}
+        </button>
+        <input type="text" class="text-center w-75 m-auto mt-2" [(ngModel)]="types" placeholder="Insert type"/>
       </div>
     </div>
+    <!-- EDIT MODE END-->
+
     <div class="text-center">
-      <h5 class="card-text fw-bold">Abilities</h5>
       <div *ngIf="!isInEditMode">
-        <p class="mayus fs-5" *ngFor="let ab_arr of pokemon.abilities">
+        <h5 class="card-text fw-bold">Abilities</h5>
+        <p class="mayus fs-5" *ngFor="let ab_arr of pokemon.abilities" >
           {{ ab_arr.ability.name }}
         </p>
       </div>
 
-      <div
+      <!-- EDIT MODE -->
+      <!-- <div
         *ngIf="isInEditMode"
         class="d-flex flex-column justify-content-center"
       >
         <input type="text" class="text-center w-75 m-auto" [(ngModel)]="abilities" placeholder="Insert abilitie"/>
       </div>
-    </div>
-    <div class="text-center">
-      <h5 class="card-text fw-bold">Evolutions</h5>
-      <div *ngIf="!isInEditMode" class="">
-        <button *ngFor="let evo of pokemon.evolutions" class="mayus m-3 btn btn-outline-success" (click)="redirectTo(evo)">{{evo}}</button>
-      </div>
-      <div
-        *ngIf="isInEditMode"
-        class="d-flex flex-column justify-content-center"
-      >
-        <input type="text" class="text-center w-75 m-auto" [(ngModel)]="evolutions" placeholder="Insert evolution">
-      </div>
-    </div>
-    <div class="m-3 d-flex flex-column align-items-center">
-      <button
-        *ngIf="!isInEditMode"
-        class="btn btn-primary mt-3 w-25"
-        (click)="changeEditMode()"
-      >
-        Edit
-      </button>
-      <button *ngIf="isInEditMode" class="btn btn-primary mt-3 w-25" (click)="changePokemon()">Save</button>
-      <button *ngIf="isInEditMode" class="btn btn-danger mt-3 w-25" (click)="changeEditMode()">Cancel</button>
-    </div>
+    </div> -->
+      <!-- EDIT MODE END -->
 
-    <div
-      class="m-3 d-flex flex-column align-items-center"
-      *ngIf="!isInEditMode"
-    >
+    <div class="text-center">  
+      <div *ngIf="!isInEditMode" class="">
+        <h5 class="card-text fw-bold">Evolutions</h5>
+        <button *ngFor="let evo of pokemon.evolutions" class="mayus m-3 btn btn-outline-success" (click)="redirectTo(evo.evo_name)">{{evo.evo_name}} at {{evo.min_level}}</button>
+      </div>
+
+    <h5 class="card-text fw-bold">Level</h5>
+    <p *ngIf="!isInEditMode">{{pokemon.found.lvl}}</p>
+
       <input
         class="text-center mb-2 w-50"
         type="number"
         [(ngModel)]="lvl"
         placeholder="Pokemon's lvl"
+        *ngIf="isInEditMode"
       />
-      <a class="btn btn-primary w-50" (click)="checkFound()">Save</a>
+      <div *ngIf="!isInEditMode" class="m-3 d-flex flex-column align-items-center">
+        <button
+          *ngIf="pokemon.found.foundBool"
+          class="btn btn-primary mt-3 w-25"
+          (click)="changeEditMode()"
+        >
+          Edit
+        </button>
+        
+      </div>
+
+    <div
+      class="m-3 d-flex flex-column align-items-center"
+      *ngIf="pokemon.found.foundBool"
+    >
+      
+
+      
+      <!-- EDIT MODE -->
+      <button *ngIf="isInEditMode" class="btn btn-primary mt-3 w-50" (click)="changePokemon()">Save</button>
+      <button *ngIf="isInEditMode" class="btn btn-danger mt-3 w-50" (click)="changeEditMode()">Cancel</button>
+      <!-- EDIT MODE END-->
     </div>
   </div>
 </div>
