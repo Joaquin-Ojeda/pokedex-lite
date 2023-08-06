@@ -10,6 +10,7 @@ import { PokeListComponent } from './components/poke-list/poke-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DetailComponent } from './components/detail/detail.component';
 import { NewCardComponent } from './components/new-card/new-card.component';
+import { MyPokedexComponent } from './screens/my-pokedex/my-pokedex.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NewCardComponent } from './components/new-card/new-card.component';
     HeaderComponent,
     PokeListComponent,
     DetailComponent,
-    NewCardComponent
+    NewCardComponent,
+    MyPokedexComponent,
   ],
   imports: [
     BrowserModule,

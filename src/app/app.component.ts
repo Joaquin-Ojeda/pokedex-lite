@@ -23,7 +23,7 @@ export class AppComponent {
 
   savePokemons(){
     let pokemonData;
-    for(let i=1; i<=150; i++){
+    for(let i=1; i<=15; i++){
       this.pokeApiService.getPokemons(i).subscribe(
         res=>{
           pokemonData={

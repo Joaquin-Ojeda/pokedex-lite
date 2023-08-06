@@ -39,4 +39,8 @@ export class NewCardComponent {
     return
   }
 
+  back(){
+    this.router.navigate(['dashboard']);
+  }
+
 }

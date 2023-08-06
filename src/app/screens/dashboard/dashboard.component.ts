@@ -26,5 +26,8 @@ export class DashboardComponent {
     this.pokemons = Pokemons;
   }
 
+  my_pokedex(){
+    this.router.navigate(['my-pokedex'])
+  }
 
 }

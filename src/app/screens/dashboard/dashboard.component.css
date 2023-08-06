@@ -2,3 +2,8 @@ html{
     background-color: #DC3545;
     height: 100%;
 }
+.sticky-btn{
+    position: sticky;
+    bottom: 20px;
+    left: 90vw;
+}

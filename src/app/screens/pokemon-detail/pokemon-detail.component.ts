@@ -27,10 +27,26 @@ export class PokemonDetailComponent {
     checkToken(this.router);
   }
 
-
-
   getPokemon(id: any){
     let poke_aux: any;
+
+    // for(let poke of Pokemons){
+    //   console.log(poke);
+    //   if(poke.id==id){
+    //     poke_aux={
+    //       id: poke.id,
+    //       name: poke.name,
+    //       image: poke.image,
+    //       abilities: poke.abilities,
+    //       evolutions: this.findEvolutions(poke.name),
+    //       types: poke.types,
+    //       found: this.pokemonStatus(poke)
+    //     }
+    //     this.pokemon = poke_aux;
+    //     return
+    //   }
+    // }
+
     this.pokeApiService.getPokemons(id).subscribe(
       res=>{
         poke_aux={
