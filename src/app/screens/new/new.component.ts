@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { checkToken } from 'src/app/models/token.functions';
 
 @Component({
   selector: 'app-new',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class NewComponent {
 
+  constructor(private router: Router){}
+
+  ngOnInit(){
+    checkToken(this.router);
+  }
 }

@@ -8,6 +8,7 @@ import { PokemonDetailComponent } from './screens/pokemon-detail/pokemon-detail.
 
 const routes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
+  {path:'pokemon/undefined', redirectTo: 'dashboard', pathMatch:'full'},
   {path:'login', component: LoginComponent},
   {path:'dashboard', component: DashboardComponent},
   {path:'new', component: NewComponent},
