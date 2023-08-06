@@ -1,0 +1,32 @@
+<div
+  *ngIf="pokemon"
+  class="card m-auto mt-3 border-3 border-dark mb-3 d-flex flex-column align-items-center w-75 fadeInDown"
+  style="max-width: 600px"
+>
+  <a href="dashboard" class="btn btn-success mt-2">Volver</a>
+  <img src="{{ pokemon.image }}" class="card-img-top w-50" alt="poke" />
+  <div class="card-body d-flex flex-column justify-content-center w-100">
+    <h5 class="card-title text-center fw-bold mayus">{{ pokemon.name }}</h5>
+    <div class="text-center">
+      <h5 class="card-text">Types</h5>
+      <p class="mayus" *ngFor="let type_arr of pokemon.types">
+        {{ type_arr.type.name }}
+      </p>
+    </div>
+    <div class="text-center">
+      <h5 class="card-text">Abilities</h5>
+      <p class="mayus" *ngFor="let ab_arr of pokemon.abilities">
+        {{ ab_arr.ability.name }}
+      </p>
+    </div>
+    <div class="text-center">
+      <h5 class="card-text">Evolutions</h5>
+      <p class="mayus">Evo1 Evo2</p>
+    </div>
+    <a href="" class="btn btn-primary">Edit</a>
+    <div class="m-3 d-flex flex-column align-items-center">
+      <input class="text-center mb-2 w-75" type="number" [(ngModel)]="lvl"/>
+      <a  class="btn btn-primary w-50 " (click)="checkFound()">Found</a>
+    </div>
+  </div>
+</div>

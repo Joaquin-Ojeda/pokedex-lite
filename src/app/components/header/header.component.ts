@@ -14,4 +14,11 @@ export class HeaderComponent {
   logOutBtn(){
     logOut(this.router);
   }
+  dashboardRedirect(){
+    this.router.navigate(['dashboard']);
+  }
+
+  newBtn(){
+    this.router.navigate(['new']);
+  }
 }

@@ -1,5 +1,5 @@
-<div class="bg-danger h-100 d-flex justify-content-center">
-  <table class="table table-dark table-striped mt-3 w-75">
+<div class="bg-danger h-100 d-flex justify-content-center fadeInDown">
+  <table class="table table-dark table-hover table-striped mt-3 w-75">
     <thead>
       <tr>
         <th scope="col">ID</th>
@@ -8,7 +8,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let pokemon of allPokemons" class="" [ngClass]="{'border border-2 border-success': pokemonStatus(pokemon)}">
+      <tr *ngFor="let pokemon of allPokemons"
+      class="pointer hover-border"
+      [ngClass]="{'border border-2 border-success': pokemonStatus(pokemon)}"
+      (click)="getPokemon(pokemon)"
+      >
         <th scope="row">{{ pokemon.id }}</th>
         <td class="mayus">{{ pokemon.name }}</td>
         <td>{{lvl}}</td>

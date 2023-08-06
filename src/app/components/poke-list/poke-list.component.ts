@@ -35,4 +35,8 @@ export class PokeListComponent {
     }
     return false;
    }
+
+   getPokemon(pokemon: any){
+    this.router.navigate([`pokemon/${pokemon.id}`])
+  }
 }

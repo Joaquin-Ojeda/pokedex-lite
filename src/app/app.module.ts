@@ -8,22 +8,18 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { PokeListComponent } from './components/poke-list/poke-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DetailComponent } from './components/detail/detail.component';
+import { NewCardComponent } from './components/new-card/new-card.component';
 
-// import { LoginComponent } from './screens/login/login.component';
-// import { DashboardComponent } from './screens/dashboard/dashboard.component';
-// import { NewComponent } from './screens/new/new.component';
-// import { EditComponent } from './screens/edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     HeaderComponent,
-    PokeListComponent
-    // LoginComponent,
-    // DashboardComponent,
-    // NewComponent,
-    // EditComponent
+    PokeListComponent,
+    DetailComponent,
+    NewCardComponent
   ],
   imports: [
     BrowserModule,

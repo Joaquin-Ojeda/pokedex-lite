@@ -1,3 +1,6 @@
-.mayus::first-letter{
-    text-transform: uppercase;
+.pointer{
+    cursor: pointer;
+}
+.hover-border:hover{
+    border: 3px solid aqua;
 }
