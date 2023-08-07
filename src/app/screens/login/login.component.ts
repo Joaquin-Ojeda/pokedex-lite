@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  datos_usuarios: any[]=[];
   error_status: boolean=false;
   error_msg: string='';
   loginForm = new FormGroup({
@@ -21,22 +20,19 @@ export class LoginComponent {
   constructor(private usuariosService: UsuariosService, private router: Router){}
 
   ngOnInit(){
-    this.getUsuarios();
     this.checkLocalStorage();
   }
+  //REVISA SI YA HAY ALGUIEN LOGEADO GUARDADO EN EL LOCAL STORAGE
   checkLocalStorage(){
     if(localStorage.getItem('token')){
       this.router.navigate(['dashboard']);
     }
   }
 
-  getUsuarios(){
-    this.datos_usuarios = this.usuariosService.getLogin();
-  }
-
+  //FUNCION PARA EL BOTON DE LOGIN
   onLogin(form: any){
     try {
-      const usuario_result = this.datos_usuarios.find( element => element.name == form.usuario);
+      const usuario_result = this.usuariosService.getLogin().find( element => element.name == form.usuario);
       if(usuario_result.password == form.password){
         console.log("Logeado con Exito!");
         localStorage.setItem('token', this.usuariosService.getUsuario(usuario_result.name).name);

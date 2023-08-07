@@ -21,9 +21,10 @@ export class AppComponent {
     Pokemons.sort((x,y)=>x.id>y.id?1:-1);
   }
 
+  //FUNCION PARA GUARDAR LOS POKEMONS
   savePokemons(){
     let pokemonData;
-    for(let i=1; i<=15; i++){
+    for(let i=1; i<=150; i++){
       this.pokeApiService.getPokemons(i).subscribe(
         res=>{
           pokemonData={
@@ -39,6 +40,8 @@ export class AppComponent {
       );
     };
   }
+
+  //FUNCION DE GUARDADO DE EVOLUCIONES
   saveEvolutions(){
     let pokemonEvolutions;
     let evolution_aux;
@@ -60,6 +63,7 @@ export class AppComponent {
     };
   }
 
+  //FUNCION RECURSIVA PARA GUARDAR TODAS LAS EVOLUCIONES
   allEvolutions(evolve: any[]){
     if(evolve.length>0){
       this.evolutions_names.push({

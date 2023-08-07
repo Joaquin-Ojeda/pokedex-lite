@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './screens/login/login.component';
 import { DashboardComponent } from './screens/dashboard/dashboard.component';
 import { NewComponent } from './screens/new/new.component';
-import { EditComponent } from './screens/edit/edit.component';
 import { PokemonDetailComponent } from './screens/pokemon-detail/pokemon-detail.component';
 import { MyPokedexComponent } from './screens/my-pokedex/my-pokedex.component';
 
@@ -14,7 +13,6 @@ const routes: Routes = [
   {path:'dashboard', component: DashboardComponent},
   {path:'new', component: NewComponent},
   {path:'pokemon/:id', component: PokemonDetailComponent},
-  {path:'edit', component: EditComponent},
   {path:'my-pokedex', component: MyPokedexComponent}
 ];
 
@@ -23,4 +21,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LoginComponent, DashboardComponent, NewComponent, PokemonDetailComponent, EditComponent]
+export const routingComponents = [LoginComponent, DashboardComponent, NewComponent, PokemonDetailComponent]

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { checkToken } from 'src/app/models/token.functions';
-import { PokeApiService } from '../../services/api-pokemons/poke-api.service'
 import { Pokemons } from 'src/app/data/pokemons-data';
 
 
@@ -21,11 +20,13 @@ export class DashboardComponent {
     this.getPokemons();
     this.pokemons.sort((x,y)=> x.id>y.id?1:-1);
   }
-
+  
+  //GUARDO LOS POKEMONS PARA LUEGO PASARLO HACIA LA LISTA
   getPokemons(){
     this.pokemons = Pokemons;
   }
 
+  //REDIRECT HACIA MI POKEDEX
   my_pokedex(){
     this.router.navigate(['my-pokedex'])
   }

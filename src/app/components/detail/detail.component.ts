@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pokemons } from 'src/app/data/pokemons-data';
-import { Pokemon } from 'src/app/models/pokemon';
 import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
 
 @Component({
@@ -17,15 +16,16 @@ export class DetailComponent {
   abilities:any;
   evolutions: any;
   isInEditMode: boolean=false;
+  
 
   constructor(private usuariosService: UsuariosService, private router: Router){
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit(){
-
   }
 
+  //FUNCION PARA CHECKEAR SI EL LEVEL INGRESADO POR EL USUARIO ES VALIDO
   checkLevel(){
 
     if(this.lvl<0 || this.lvl>100 || this.lvl==null){
@@ -42,10 +42,12 @@ export class DetailComponent {
     
   }
 
+  //FUNCION PARA ACTIVAR EL MODO EDICION
   changeEditMode(){
     this.isInEditMode = !this.isInEditMode;
   }
 
+  //GUARDAR CAMBIOS AL POKEMON
   changePokemon(){
       if(this.name!=null && this.name!=''){
         this.pokemon.name = this.name;
@@ -76,6 +78,7 @@ export class DetailComponent {
     this.router.navigate([`pokemon/${id}`]);
   }
   
+  //CARGA DEL POKEMON
   loadPokemon(pokemon: any){
     for(let i=0; i<Pokemons.length; i++){
       if( Pokemons[i].id == pokemon.id ){
@@ -84,16 +87,22 @@ export class DetailComponent {
     }
   }
 
+  //REMOVER EL TIPO DE LA LISTA DE TIPOS DEL POKEMON
   removeType(name: string){
 
-    for(let i=0;i<this.pokemon.types.length;i++){
-      if(this.pokemon.types[i].type.name==name){
-        this.pokemon.types.splice(i,1);
-      }
+    if(window.confirm("Are you sure you want to eliminate this type?"))
+      for(let i=0;i<this.pokemon.types.length;i++){
+        if(this.pokemon.types[i].type.name==name){
+          this.pokemon.types.splice(i,1);
+        }
     }
   }
+
   back(){
     this.router.navigate(['dashboard']);
+  }
+  backToMyPokedex(){
+    this.router.navigate(['my-pokedex']);
   }
   
 }

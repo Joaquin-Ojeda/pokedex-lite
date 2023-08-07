@@ -4,3 +4,9 @@
 .hover-border:hover{
     border: 3px solid aqua;
 }
+.hide-scroll::-webkit-scrollbar {
+    display: none;
+}
+.max{
+    max-height: 75%;
+}

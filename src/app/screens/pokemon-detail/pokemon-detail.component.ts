@@ -27,26 +27,9 @@ export class PokemonDetailComponent {
     checkToken(this.router);
   }
 
+  //FUNCION PARA OBTENER EL POKEMON LLAMANDO A LA POKEAPI(YA QUE EL ARCHIVO DE POKEMONS LO ENCUENTRA VACIO A VECES)
   getPokemon(id: any){
     let poke_aux: any;
-
-    // for(let poke of Pokemons){
-    //   console.log(poke);
-    //   if(poke.id==id){
-    //     poke_aux={
-    //       id: poke.id,
-    //       name: poke.name,
-    //       image: poke.image,
-    //       abilities: poke.abilities,
-    //       evolutions: this.findEvolutions(poke.name),
-    //       types: poke.types,
-    //       found: this.pokemonStatus(poke)
-    //     }
-    //     this.pokemon = poke_aux;
-    //     return
-    //   }
-    // }
-
     this.pokeApiService.getPokemons(id).subscribe(
       res=>{
         poke_aux={
@@ -63,6 +46,7 @@ export class PokemonDetailComponent {
     );
   }
 
+  //BUSCA Y ADMINISTRA LAS EVOLUCIONES DEL POKEMON
   findEvolutions(name: string): string[]{
     let evolutions: any[]=[];
     for(let evol of Evolutions){
@@ -88,6 +72,7 @@ export class PokemonDetailComponent {
     return [];
   }
 
+  //REVISA SI EL POKEMON YA FUE ATRAPADO POR EL USUARIO
   pokemonStatus(pokemon: any){
     let pokes_vistos = this.usuariosService.getPokemonsVistos(localStorage.getItem('token'));
     let lvl;

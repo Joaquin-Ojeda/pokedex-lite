@@ -13,23 +13,24 @@ export class UsuariosService {
     return Usuarios;
   }
 
+  //FUNCION PARA OBTENER LOS DATOS DE ARCHIVO DE USUARIOS
   getLogin(): any[]{
     let login: any[]=[];
     for(let user of Usuarios){
-
       login.push({
         name: user.name,
         password: user.password
       });
-
     }
     return login;
   }
 
+  //BUSCADOR DE USUARIO DENTRO DEL ARCHIVO DE USUARIOS
   getUsuario(username: any): any{
     return Usuarios.find(element => element.name == username);
   }
 
+  //FUNCION PARA DEVOLVER UN ARRAY CON LOS POKEMONS DEL USUARIO
   getPokemonsVistos(username: any): any[]{
     return this.getUsuario(username).pokemons_vistos;
   }

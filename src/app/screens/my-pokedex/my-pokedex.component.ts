@@ -19,6 +19,7 @@ export class MyPokedexComponent {
     this.getPokemons();
   }
 
+  //OBTENER LISTA DE POKEMONS YA ATRAPADOS PARA ENVIARSELA A LA LISTA
   getPokemons(){
     let pokes_vistos = this.usuariosService.getPokemonsVistos(localStorage.getItem('token'));
     let pokemonData;
@@ -39,6 +40,7 @@ export class MyPokedexComponent {
     }
   }
 
+  //BOTON PARA REDIRECT
 back(){
   this.router.navigate(['dashboard'])
 }
