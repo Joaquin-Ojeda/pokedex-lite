@@ -20,7 +20,6 @@ export class NewCardComponent {
     for(let poke of Pokemons){
       if(poke.name==this.name){
         let poke_found=this.usuariosService.getPokemonsVistos(localStorage.getItem('token'))
-        console.log(poke_found);
         for(let poke_aux of poke_found){
           if(poke_aux.id==poke.id){
             window.alert("Pokemon alredy found");

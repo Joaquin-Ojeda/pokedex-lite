@@ -34,7 +34,6 @@ export class LoginComponent {
     try {
       const usuario_result = this.usuariosService.getLogin().find( element => element.name == form.usuario);
       if(usuario_result.password == form.password){
-        console.log("Logeado con Exito!");
         localStorage.setItem('token', this.usuariosService.getUsuario(usuario_result.name).name);
         this.router.navigate(['dashboard']);
       }
